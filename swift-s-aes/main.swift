@@ -8,5 +8,11 @@
 
 import Foundation
 
-print("Hello, World!")
+let plainText = NibbleArray(nibbles: [0b0100, 0b1001, 0b0100, 0b0010]) // "IB" in ASCII
+let key = NibbleArray(nibbles: [0b0110, 0b1000, 0b0110, 0b1100]) // "hl" in ASCII
+let cipherText = plainText.encrypt(key: key) // Should be 1001 0101 0111 0101
+let decrypted = cipherText.decrypt(key: key) // Should be equal to plainText
 
+print(cipherText)
+print(decrypted)
+print(plainText == decrypted) // Should be true
