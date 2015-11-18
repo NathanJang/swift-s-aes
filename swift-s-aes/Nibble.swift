@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// A four-bit unsigned number from 0 to 15 in the finite field GF(2^4).
+/// A four-bit unsigned number from 0 to 15 in the finite field GF(2^4) over the reducing polynomial `x^4 + x + 1`.
 struct Nibble {
     // Digits from left to right in a binary representation
     private let zerothBit, firstBit, secondBit, thirdBit: Bit
@@ -47,6 +47,7 @@ struct Nibble {
         return result
     }
     
+    /// Returns an array of UInt8s, 0 or 1.
     var uInt8ArrayValue: [UInt8] {
         return [zerothBit.uInt8Value, firstBit.uInt8Value, secondBit.uInt8Value, thirdBit.uInt8Value]
     }
@@ -68,16 +69,30 @@ struct Nibble {
         return product
     }
     
+    /// Performs S-Box substitution by matrix multiplication.
     func substituted() -> Nibble {
-        let table: [Nibble] = [0b1001, 0b0100, 0b1010, 0b1011, 0b1101, 0b0001, 0b1000, 0b0101, 0b0110, 0b0010, 0b0000, 0b0011, 0b1100, 0b1110, 0b1111, 0b0111]
-        // Casting to an Int because apparently arrays only support subscripting with Ints lol.
-        return table[Int(self.uInt8Value)]
+        let inverted = self.inverted()
+        let invertedArray = [inverted.zerothBit, inverted.firstBit, inverted.secondBit, inverted.thirdBit]
+        let matrix = Nibble(0b0111)
+        let matrixArray = [matrix.zerothBit, matrix.firstBit, matrix.secondBit, matrix.thirdBit]
+        let bit0 = matrixArray[3] * invertedArray[0] ^ matrixArray[0] & invertedArray[1] ^ matrixArray[1] & invertedArray[2] ^ matrixArray[2] & invertedArray[3]
+        let bit1 = matrixArray[2] & invertedArray[0] ^ matrixArray[3] & invertedArray[1] ^ matrixArray[0] & invertedArray[2] ^ matrixArray[1] & invertedArray[3]
+        let bit2 = matrixArray[1] & invertedArray[0] ^ matrixArray[2] & invertedArray[1] ^ matrixArray[3] & invertedArray[2] ^ matrixArray[0] & invertedArray[3]
+        let bit3 = matrixArray[0] & invertedArray[0] ^ matrixArray[1] & invertedArray[1] ^ matrixArray[2] & invertedArray[2] ^ matrixArray[3] & invertedArray[3]
+        return [bit0, bit1, bit2, bit3] + 0b1001
     }
     
+    /// Performs inverse S-Box substitution by matrix multiplication. Undoes `substituted()`.
     func unsubstituted() -> Nibble {
-        let table: [Nibble] = [0b1010, 0b0101, 0b1001, 0b1011, 0b0001, 0b0111, 0b1000, 0b1111, 0b0110, 0b0000, 0b0010, 0b0011, 0b1100, 0b0100, 0b1101, 0b1110]
-        // Casting to an Int because apparently arrays only support subscripting with Ints lol.
-        return table[Int(self.uInt8Value)]
+        let substituted = self + 0b1001
+        let substitutedArray = [substituted.zerothBit, substituted.firstBit, substituted.secondBit, substituted.thirdBit]
+        let inverseMatrix = Nibble(0b1101)
+        let inverseMatrixArray = [inverseMatrix.zerothBit, inverseMatrix.firstBit, inverseMatrix.secondBit, inverseMatrix.thirdBit]
+        let bit0 = inverseMatrixArray[3] * substitutedArray[0] ^ inverseMatrixArray[0] & substitutedArray[1] ^ inverseMatrixArray[1] & substitutedArray[2] ^ inverseMatrixArray[2] & substitutedArray[3]
+        let bit1 = inverseMatrixArray[2] & substitutedArray[0] ^ inverseMatrixArray[3] & substitutedArray[1] ^ inverseMatrixArray[0] & substitutedArray[2] ^ inverseMatrixArray[1] & substitutedArray[3]
+        let bit2 = inverseMatrixArray[1] & substitutedArray[0] ^ inverseMatrixArray[2] & substitutedArray[1] ^ inverseMatrixArray[3] & substitutedArray[2] ^ inverseMatrixArray[0] & substitutedArray[3]
+        let bit3 = inverseMatrixArray[0] & substitutedArray[0] ^ inverseMatrixArray[1] & substitutedArray[1] ^ inverseMatrixArray[2] & substitutedArray[2] ^ inverseMatrixArray[3] & substitutedArray[3]
+        return Nibble([bit0, bit1, bit2, bit3]).inverted()
     }
 }
 
@@ -212,6 +227,14 @@ extension Nibble: IntegerLiteralConvertible {
     typealias IntegerLiteralType = UInt8
     init(integerLiteral value: Nibble.IntegerLiteralType) {
         self.init(value)
+    }
+}
+
+/// Allows initialization by array literal.
+extension Nibble: ArrayLiteralConvertible {
+    typealias Element = Bit
+    init(arrayLiteral bitArray: Nibble.Element...) {
+        self.init(bitArray)
     }
 }
 

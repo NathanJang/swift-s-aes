@@ -10,7 +10,6 @@
 		CE3C3B981BF9E39F005D8F7B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3C3B971BF9E39F005D8F7B /* main.swift */; };
 		CE3C3B9F1BF9E3B7005D8F7B /* Nibble.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3C3B9E1BF9E3B7005D8F7B /* Nibble.swift */; };
 		CE9550F21BFAD67700E16B18 /* S-AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9550F11BFAD67700E16B18 /* S-AES.swift */; };
-		CE9550F41BFB351F00E16B18 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = CE9550F31BFB351F00E16B18 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -130,7 +129,6 @@
 			files = (
 				CE9550F21BFAD67700E16B18 /* S-AES.swift in Sources */,
 				CE3C3B9F1BF9E3B7005D8F7B /* Nibble.swift in Sources */,
-				CE9550F41BFB351F00E16B18 /* README.md in Sources */,
 				CE3C3B981BF9E39F005D8F7B /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
