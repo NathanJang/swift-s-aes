@@ -169,7 +169,7 @@ prefix func ~(x: Nibble) -> Nibble {
 
 /// Shifts the bits in lhs left rhs times.
 func <<(var lhs: Nibble, rhs: Int) -> Nibble {
-    for _ in rhs...1 {
+    for _ in 1...rhs {
         lhs = Nibble([lhs.firstBit, lhs.secondBit, lhs.thirdBit, .Zero])
     }
     return lhs
@@ -177,7 +177,7 @@ func <<(var lhs: Nibble, rhs: Int) -> Nibble {
 
 /// Shifts the bits in lhs right rhs times.
 func >>(var lhs: Nibble, rhs: Int) -> Nibble {
-    for _ in rhs...1 {
+    for _ in 1...rhs {
         lhs = Nibble([.Zero, lhs.zerothBit, lhs.firstBit, lhs.secondBit])
     }
     return lhs
