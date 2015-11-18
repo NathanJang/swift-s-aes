@@ -75,7 +75,7 @@ struct Nibble {
         let invertedArray = [inverted.zerothBit, inverted.firstBit, inverted.secondBit, inverted.thirdBit]
         let matrix = Nibble(0b0111)
         let matrixArray = [matrix.zerothBit, matrix.firstBit, matrix.secondBit, matrix.thirdBit]
-        let bit0 = matrixArray[3] * invertedArray[0] ^ matrixArray[0] & invertedArray[1] ^ matrixArray[1] & invertedArray[2] ^ matrixArray[2] & invertedArray[3]
+        let bit0 = matrixArray[3] & invertedArray[0] ^ matrixArray[0] & invertedArray[1] ^ matrixArray[1] & invertedArray[2] ^ matrixArray[2] & invertedArray[3]
         let bit1 = matrixArray[2] & invertedArray[0] ^ matrixArray[3] & invertedArray[1] ^ matrixArray[0] & invertedArray[2] ^ matrixArray[1] & invertedArray[3]
         let bit2 = matrixArray[1] & invertedArray[0] ^ matrixArray[2] & invertedArray[1] ^ matrixArray[3] & invertedArray[2] ^ matrixArray[0] & invertedArray[3]
         let bit3 = matrixArray[0] & invertedArray[0] ^ matrixArray[1] & invertedArray[1] ^ matrixArray[2] & invertedArray[2] ^ matrixArray[3] & invertedArray[3]
@@ -88,7 +88,7 @@ struct Nibble {
         let substitutedArray = [substituted.zerothBit, substituted.firstBit, substituted.secondBit, substituted.thirdBit]
         let inverseMatrix = Nibble(0b1101)
         let inverseMatrixArray = [inverseMatrix.zerothBit, inverseMatrix.firstBit, inverseMatrix.secondBit, inverseMatrix.thirdBit]
-        let bit0 = inverseMatrixArray[3] * substitutedArray[0] ^ inverseMatrixArray[0] & substitutedArray[1] ^ inverseMatrixArray[1] & substitutedArray[2] ^ inverseMatrixArray[2] & substitutedArray[3]
+        let bit0 = inverseMatrixArray[3] & substitutedArray[0] ^ inverseMatrixArray[0] & substitutedArray[1] ^ inverseMatrixArray[1] & substitutedArray[2] ^ inverseMatrixArray[2] & substitutedArray[3]
         let bit1 = inverseMatrixArray[2] & substitutedArray[0] ^ inverseMatrixArray[3] & substitutedArray[1] ^ inverseMatrixArray[0] & substitutedArray[2] ^ inverseMatrixArray[1] & substitutedArray[3]
         let bit2 = inverseMatrixArray[1] & substitutedArray[0] ^ inverseMatrixArray[2] & substitutedArray[1] ^ inverseMatrixArray[3] & substitutedArray[2] ^ inverseMatrixArray[0] & substitutedArray[3]
         let bit3 = inverseMatrixArray[0] & substitutedArray[0] ^ inverseMatrixArray[1] & substitutedArray[1] ^ inverseMatrixArray[2] & substitutedArray[2] ^ inverseMatrixArray[3] & substitutedArray[3]

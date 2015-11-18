@@ -13,6 +13,7 @@ let key = NibbleArray(nibbles: [0b0110, 0b1000, 0b0110, 0b1100]) // "hl" in ASCI
 let cipherText = plainText.encrypt(key: key) // Should be 1001 0101 0111 0101
 let decrypted = cipherText.decrypt(key: key) // Should be equal to plainText
 
-print(cipherText)
-print(decrypted)
+print("Plain text: \(plainText)")
+print("Cipher text: \(cipherText)")
+print("Decrypted: \(decrypted)")
 print(plainText == decrypted) // Should be true
