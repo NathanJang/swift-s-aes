@@ -6,17 +6,21 @@
 //  Copyright © 2015 Jonathan Chan. All rights reserved.
 //
 
+/// Implements arithmetic calculations on a nibble instance.
 protocol NibbleOperationsType {
     /// Returns a string of the nibble's binary representation.
     var binaryRepresentation: String { get }
     
     /// The multiplicative inverse of the nibble, calculated through Fermat's Little Theorem.
+    @warn_unused_result
     func inverted() -> Self
     
     /// Performs S-Box substitution by matrix multiplication.
+    @warn_unused_result
     func substituted() -> Self
     
     /// Performs inverse S-Box substitution by matrix multiplication. Undoes `substituted()`.
+    @warn_unused_result
     func unsubstituted() -> Self
     
     func ^(lhs: Self, rhs: Self) -> Self
@@ -84,6 +88,7 @@ extension Nibble: NibbleOperationsType {
     static let reducingPolynomial: UInt8 = 0b10011
     
     /// The multiplicative inverse of the nibble, calculated through Fermat's Little Theorem.
+    @warn_unused_result
     func inverted() -> Nibble {
         var product = self
         for _ in 1...(16 - 2 - 1) {
@@ -93,6 +98,7 @@ extension Nibble: NibbleOperationsType {
     }
     
     /// Performs S-Box substitution by matrix multiplication.
+    @warn_unused_result
     func substituted() -> Nibble {
         let invertedArray = self.inverted().bitArrayValue
         let matrixArray = Nibble(0b0111).bitArrayValue
@@ -104,6 +110,7 @@ extension Nibble: NibbleOperationsType {
     }
     
     /// Performs inverse S-Box substitution by matrix multiplication. Undoes `substituted()`.
+    @warn_unused_result
     func unsubstituted() -> Nibble {
         let substitutedArray = (self + 0b1001).bitArrayValue
         let inverseMatrixArray = Nibble(0b1101).bitArrayValue

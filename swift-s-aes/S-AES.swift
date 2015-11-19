@@ -6,8 +6,11 @@
 //  Copyright © 2015 Jonathan Chan. All rights reserved.
 //
 
+/// Implements methods for the MixColumns steps, in addition to `NibbleOperationsType`.
 protocol NibbleColumnOperationsType: NibbleOperationsType {
+    @warn_unused_result
     func mixed() -> Self
+    @warn_unused_result
     func unmixed() -> Self
 }
 
@@ -15,7 +18,7 @@ protocol NibbleColumnOperationsType: NibbleOperationsType {
 
 /// A 1x2 matrix of nibbles, from top to bottom.
 struct NibbleColumn {
-//    private var nibbles: [Nibble]
+    /// Nibbles in a column, from top to bottom.
     private var zerothNibble, firstNibble: Nibble
     
     /// Initializer with an array of nibbles.
@@ -25,11 +28,13 @@ struct NibbleColumn {
         if nibbles.count >= 2 { firstNibble = nibbles[1] } else { firstNibble = Nibble() }
     }
     
+    /// Returns an array of Nibbles.
     var nibbleArrayValue: [Nibble] {
         return [zerothNibble, firstNibble]
     }
     
     /// Switches the positions of the nibbles: AB -> BA.
+    @warn_unused_result
     func rotated() -> NibbleColumn {
         return [self[1], self[0]]
     }
@@ -42,16 +47,19 @@ extension NibbleColumn: NibbleOperationsType {
     }
     
     /// The multiplicative inverse of the nibble, calculated through Fermat's Little Theorem.
+    @warn_unused_result
     func inverted() -> NibbleColumn {
         return [self[0].inverted(), self[1].inverted()]
     }
     
     /// Substitutes each nibble by S-Box substitution.
+    @warn_unused_result
     func substituted() -> NibbleColumn {
         return [self[0].substituted(), self[1].substituted()]
     }
     
     /// Reverse-substitutes each nibble, undoing `substitution()`.
+    @warn_unused_result
     func unsubstituted() -> NibbleColumn {
         return [self[0].unsubstituted(), self[1].unsubstituted()]
     }
@@ -59,6 +67,7 @@ extension NibbleColumn: NibbleOperationsType {
 
 extension NibbleColumn: NibbleColumnOperationsType {
     /// Performs the MixColumns step by matrix multiplication and reduction.
+    @warn_unused_result
     func mixed() -> NibbleColumn {
         let matrix = NibbleArray(nibbles: [0b0001, 0b0100, 0b0100, 0b0001])
         let result: NibbleColumn = [
@@ -69,6 +78,7 @@ extension NibbleColumn: NibbleColumnOperationsType {
     }
     
     /// Performs the InverseMixColumns step by matrix multiplication and reduction, undoing `mixed()`.
+    @warn_unused_result
     func unmixed() -> NibbleColumn {
         let matrix = NibbleArray(nibbles: [0b1001, 0b0010, 0b0010, 0b1001])
         let result: NibbleColumn = [
@@ -133,6 +143,7 @@ func -(lhs: NibbleColumn, rhs: NibbleColumn) -> NibbleColumn {
 
 /// A 2x2 matrix of nibbles, from top to bottom and left to right.
 struct NibbleArray {
+    /// The nibble columns in a nibble array, from left to right.
     private var zerothColumn, firstColumn: NibbleColumn
     
     /// Initializer with an array of nibble columns.
@@ -157,6 +168,7 @@ struct NibbleArray {
     }
     
     /// Performs key expansion given an initial key in `self`.
+    @warn_unused_result
     func expandedKeys() -> [NibbleArray] {
         let roundConstants: [NibbleColumn] = [[0b0000, 0b0000], [0b1000, 0b0000], [0b0011, 0b0000]]
         let round0 = self
@@ -173,6 +185,7 @@ struct NibbleArray {
     }
     
     /// Encrypts `self` by performing the designated steps.
+    @warn_unused_result
     func encrypt(key initialKey: NibbleArray) -> NibbleArray {
         let plainText = self
         let keys = initialKey.expandedKeys()
@@ -185,6 +198,7 @@ struct NibbleArray {
     }
     
     /// Decrypts `self` by reversing `encrypt(key:)`.
+    @warn_unused_result
     func decrypt(key initialKey: NibbleArray) -> NibbleArray {
         let cipherText = self
         let keys = initialKey.expandedKeys()
@@ -197,16 +211,19 @@ struct NibbleArray {
     }
     
     /// Performs the ShiftRows step, switching the places of the nibbles in the bottom row.
+    @warn_unused_result
     func shiftedRows() -> NibbleArray {
         return [[self[0][0], self[1][1]], [self[1][0], self[0][1]]]
     }
     
     /// Undoes `shiftedRows()`, switching the places of the nibbles in the bottom row.
     /// Coincidentally equivalent to `shiftedRows()`.
+    @warn_unused_result
     func unshiftedRows() -> NibbleArray {
         return self.shiftedRows()
     }
     
+    /// Returns an array of NibbleColumns.
     var nibbleColumnArrayValue: [NibbleColumn] {
         return [zerothColumn, firstColumn]
     }
@@ -219,16 +236,19 @@ extension NibbleArray: NibbleOperationsType {
     }
     
     /// The multiplicative inverse of the nibble, calculated through Fermat's Little Theorem.
+    @warn_unused_result
     func inverted() -> NibbleArray {
         return [self[0].inverted(), self[1].inverted()]
     }
 
     /// Substitutes each nibble by S-Box substitution.
+    @warn_unused_result
     func substituted() -> NibbleArray {
         return [self[0].substituted(), self[1].substituted()]
     }
     
     /// Reverse-substitutes each nibble, undoing `substitution()`.
+    @warn_unused_result
     func unsubstituted() -> NibbleArray {
         return [self[0].unsubstituted(), self[1].unsubstituted()]
     }
@@ -236,11 +256,13 @@ extension NibbleArray: NibbleOperationsType {
 
 extension NibbleArray: NibbleColumnOperationsType {
     /// Performs the MixColumns step by matrix multiplication and reduction.
+    @warn_unused_result
     func mixed() -> NibbleArray {
         return [self[0].mixed(), self[1].mixed()]
     }
     
     /// Performs the InverseMixColumns step by matrix multiplication and reduction, undoing `mixed()`.
+    @warn_unused_result
     func unmixed() -> NibbleArray {
         return [self[0].unmixed(), self[1].unmixed()]
     }
