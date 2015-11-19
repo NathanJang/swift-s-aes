@@ -6,8 +6,6 @@
 //  Copyright © 2015 Jonathan Chan. All rights reserved.
 //
 
-import Foundation
-
 protocol NibbleColumnOperationsType: NibbleOperationsType {
     func mixed() -> Self
     func unmixed() -> Self

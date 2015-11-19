@@ -6,8 +6,6 @@
 //  Copyright © 2015 Jonathan Chan. All rights reserved.
 //
 
-import Foundation
-
 let plainText = NibbleArray(nibbles: [0b0100, 0b1001, 0b0100, 0b0010]) // "IB" in ASCII
 print("Plain text: \(plainText)")
 

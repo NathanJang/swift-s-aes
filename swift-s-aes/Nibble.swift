@@ -6,8 +6,6 @@
 //  Copyright © 2015 Jonathan Chan. All rights reserved.
 //
 
-import Foundation
-
 protocol NibbleOperationsType {
     /// Returns a string of the nibble's binary representation.
     var binaryRepresentation: String { get }
