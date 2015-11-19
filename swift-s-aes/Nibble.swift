@@ -162,6 +162,7 @@ func <=(lhs: Nibble, rhs: Nibble) -> Bool {
     return false
 }
 
+/// Allows bitwise operations.
 extension Nibble: BitwiseOperationsType {
     static var allZeros: Nibble {
         return self.init(0)
@@ -246,6 +247,7 @@ func /(lhs: Nibble, rhs: Nibble) -> Nibble {
 /// Allows literal initialization of a Nibble.
 extension Nibble: IntegerLiteralConvertible {
     typealias IntegerLiteralType = UInt8
+    
     init(integerLiteral value: Nibble.IntegerLiteralType) {
         self.init(value)
     }

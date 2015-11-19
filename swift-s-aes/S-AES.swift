@@ -17,14 +17,18 @@ protocol NibbleColumnOperationsType: NibbleOperationsType {
 
 /// A 1x2 matrix of nibbles, from top to bottom.
 struct NibbleColumn {
-    private var nibbles: [Nibble]
+//    private var nibbles: [Nibble]
+    private var zerothNibble, firstNibble: Nibble
     
     /// Initializer with an array of nibbles.
     /// Only the first 2 elements in the array are used.
     init(_ nibbles: [Nibble]) {
-        self.nibbles = []
-        if nibbles.count >= 1 { self.nibbles.append(nibbles[0]) }
-        if nibbles.count >= 2 { self.nibbles.append(nibbles[1]) }
+        if nibbles.count >= 1 { zerothNibble = nibbles[0] } else { zerothNibble = Nibble() }
+        if nibbles.count >= 2 { firstNibble = nibbles[1] } else { firstNibble = Nibble() }
+    }
+    
+    var nibbleArrayValue: [Nibble] {
+        return [zerothNibble, firstNibble]
     }
     
     /// Switches the positions of the nibbles: AB -> BA.
@@ -103,10 +107,11 @@ extension NibbleColumn: ArrayLiteralConvertible {
     
     subscript(index: Int) -> NibbleColumn.Element {
         get {
-            return nibbles[index]
+            return self.nibbleArrayValue[index]
         }
         set(nibble) {
-            nibbles[index] = nibble
+            if index == 0 { zerothNibble = nibble }
+            if index == 1 { firstNibble = nibble }
         }
     }
 }
@@ -130,14 +135,13 @@ func -(lhs: NibbleColumn, rhs: NibbleColumn) -> NibbleColumn {
 
 /// A 2x2 matrix of nibbles, from top to bottom and left to right.
 struct NibbleArray {
-    private var columns: [NibbleColumn]
+    private var zerothColumn, firstColumn: NibbleColumn
     
     /// Initializer with an array of nibble columns.
     /// Only the first 2 elements in the array are used.
     init(columns: [NibbleColumn]) {
-        self.columns = []
-        if columns.count >= 1 { self.columns.append(columns[0]) }
-        if columns.count >= 2 { self.columns.append(columns[1]) }
+        if columns.count >= 1 { zerothColumn = columns[0] } else { zerothColumn = NibbleColumn() }
+        if columns.count >= 2 { firstColumn = columns[1] } else { firstColumn = NibbleColumn() }
     }
     
     /// Initializer with an array of nibbles, from top to bottom and left to right.
@@ -204,6 +208,10 @@ struct NibbleArray {
     func unshiftedRows() -> NibbleArray {
         return self.shiftedRows()
     }
+    
+    var nibbleColumnArrayValue: [NibbleColumn] {
+        return [zerothColumn, firstColumn]
+    }
 }
 
 extension NibbleArray: NibbleOperationsType {
@@ -266,10 +274,11 @@ extension NibbleArray: ArrayLiteralConvertible {
     
     subscript(index: Int) -> NibbleColumn {
         get {
-            return columns[index]
+            return self.nibbleColumnArrayValue[index]
         }
         set(nibbles) {
-            columns[index] = nibbles
+            if index == 0 { zerothColumn = nibbles }
+            if index == 1 { firstColumn = nibbles }
         }
     }
 }

@@ -16,4 +16,4 @@ let decrypted = cipherText.decrypt(key: key) // Should be equal to plainText
 print("Plain text: \(plainText)")
 print("Cipher text: \(cipherText)")
 print("Decrypted: \(decrypted)")
-print(plainText == decrypted) // Should be true
+print("Decrypted is equal to plain text?: \(plainText == decrypted)") // Should be true
