@@ -144,13 +144,6 @@ func >(lhs: Nibble, rhs: Nibble) -> Bool {
     else { return false }
 }
 
-/// Checks for equality or if lhs > rhs.
-func >=(lhs: Nibble, rhs: Nibble) -> Bool {
-    if lhs == rhs { return true }
-    if lhs > rhs { return true }
-    return false
-}
-
 /// Compares the leftmost bits of each side first, eventually moving to the right.
 func <(lhs: Nibble, rhs: Nibble) -> Bool {
     if lhs.zerothBit == .Zero && rhs.zerothBit == .One { return true }
@@ -158,13 +151,6 @@ func <(lhs: Nibble, rhs: Nibble) -> Bool {
     else if lhs.secondBit == .Zero && rhs.secondBit == .One { return true }
     else if lhs.thirdBit == .Zero && rhs.thirdBit == .One { return true }
     else { return false }
-}
-
-/// Checks for equality or if lhs < rhs.
-func <=(lhs: Nibble, rhs: Nibble) -> Bool {
-    if lhs == rhs { return true }
-    if lhs < rhs { return true }
-    return false
 }
 
 /// Allows bitwise operations.
