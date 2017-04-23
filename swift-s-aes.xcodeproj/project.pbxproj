@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ABCF4BB51EAD05A70028CAA3 /* SwiftSAES.h in Headers */ = {isa = PBXBuildFile; fileRef = ABCF4BB31EAD05A70028CAA3 /* SwiftSAES.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ABCF4BB91EAD05C40028CAA3 /* Nibble.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3C3B9E1BF9E3B7005D8F7B /* Nibble.swift */; };
+		ABCF4BBA1EAD05C70028CAA3 /* S-AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9550F11BFAD67700E16B18 /* S-AES.swift */; };
 		CE3C3B981BF9E39F005D8F7B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3C3B971BF9E39F005D8F7B /* main.swift */; };
 		CE3C3B9F1BF9E3B7005D8F7B /* Nibble.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3C3B9E1BF9E3B7005D8F7B /* Nibble.swift */; };
 		CE9550F21BFAD67700E16B18 /* S-AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9550F11BFAD67700E16B18 /* S-AES.swift */; };
@@ -25,14 +28,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		ABCF4BB11EAD05A70028CAA3 /* SwiftSAES.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftSAES.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABCF4BB31EAD05A70028CAA3 /* SwiftSAES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftSAES.h; sourceTree = "<group>"; };
+		ABCF4BB41EAD05A70028CAA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE3C3B941BF9E39F005D8F7B /* swift-s-aes */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "swift-s-aes"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE3C3B971BF9E39F005D8F7B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		CE3C3B9E1BF9E3B7005D8F7B /* Nibble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nibble.swift; sourceTree = "<group>"; };
-		CE9550F11BFAD67700E16B18 /* S-AES.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "S-AES.swift"; sourceTree = "<group>"; };
-		CE9550F31BFB351F00E16B18 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		CE3C3B9E1BF9E3B7005D8F7B /* Nibble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Nibble.swift; path = "../swift-s-aes/Nibble.swift"; sourceTree = "<group>"; };
+		CE9550F11BFAD67700E16B18 /* S-AES.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "S-AES.swift"; path = "../swift-s-aes/S-AES.swift"; sourceTree = "<group>"; };
+		CE9550F31BFB351F00E16B18 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		ABCF4BAD1EAD05A70028CAA3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE3C3B911BF9E39F005D8F7B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -43,10 +56,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ABCF4BB21EAD05A70028CAA3 /* SwiftSAES */ = {
+			isa = PBXGroup;
+			children = (
+				ABCF4BB31EAD05A70028CAA3 /* SwiftSAES.h */,
+				CE3C3B9E1BF9E3B7005D8F7B /* Nibble.swift */,
+				CE9550F11BFAD67700E16B18 /* S-AES.swift */,
+				ABCF4BB41EAD05A70028CAA3 /* Info.plist */,
+			);
+			path = SwiftSAES;
+			sourceTree = "<group>";
+		};
 		CE3C3B8B1BF9E39F005D8F7B = {
 			isa = PBXGroup;
 			children = (
+				CE9550F31BFB351F00E16B18 /* README.md */,
 				CE3C3B961BF9E39F005D8F7B /* swift-s-aes */,
+				ABCF4BB21EAD05A70028CAA3 /* SwiftSAES */,
 				CE3C3B951BF9E39F005D8F7B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				CE3C3B941BF9E39F005D8F7B /* swift-s-aes */,
+				ABCF4BB11EAD05A70028CAA3 /* SwiftSAES.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -63,16 +90,42 @@
 			isa = PBXGroup;
 			children = (
 				CE3C3B971BF9E39F005D8F7B /* main.swift */,
-				CE3C3B9E1BF9E3B7005D8F7B /* Nibble.swift */,
-				CE9550F11BFAD67700E16B18 /* S-AES.swift */,
-				CE9550F31BFB351F00E16B18 /* README.md */,
 			);
 			path = "swift-s-aes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		ABCF4BAE1EAD05A70028CAA3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABCF4BB51EAD05A70028CAA3 /* SwiftSAES.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		ABCF4BB01EAD05A70028CAA3 /* SwiftSAES */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABCF4BB61EAD05A70028CAA3 /* Build configuration list for PBXNativeTarget "SwiftSAES" */;
+			buildPhases = (
+				ABCF4BAC1EAD05A70028CAA3 /* Sources */,
+				ABCF4BAD1EAD05A70028CAA3 /* Frameworks */,
+				ABCF4BAE1EAD05A70028CAA3 /* Headers */,
+				ABCF4BAF1EAD05A70028CAA3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftSAES;
+			productName = SwiftSAES;
+			productReference = ABCF4BB11EAD05A70028CAA3 /* SwiftSAES.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		CE3C3B931BF9E39F005D8F7B /* swift-s-aes */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE3C3B9B1BF9E39F005D8F7B /* Build configuration list for PBXNativeTarget "swift-s-aes" */;
@@ -97,11 +150,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Jonathan Chan";
 				TargetAttributes = {
+					ABCF4BB01EAD05A70028CAA3 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
 					CE3C3B931BF9E39F005D8F7B = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0830;
 					};
 				};
 			};
@@ -118,11 +176,31 @@
 			projectRoot = "";
 			targets = (
 				CE3C3B931BF9E39F005D8F7B /* swift-s-aes */,
+				ABCF4BB01EAD05A70028CAA3 /* SwiftSAES */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		ABCF4BAF1EAD05A70028CAA3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		ABCF4BAC1EAD05A70028CAA3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABCF4BB91EAD05C40028CAA3 /* Nibble.swift in Sources */,
+				ABCF4BBA1EAD05C70028CAA3 /* S-AES.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE3C3B901BF9E39F005D8F7B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -136,6 +214,66 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		ABCF4BB71EAD05A70028CAA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SwiftSAES/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.SwiftSAES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		ABCF4BB81EAD05A70028CAA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SwiftSAES/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jonathanchan.SwiftSAES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		CE3C3B991BF9E39F005D8F7B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -149,8 +287,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -193,8 +333,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -213,6 +355,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -220,6 +363,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -227,12 +371,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		ABCF4BB61EAD05A70028CAA3 /* Build configuration list for PBXNativeTarget "SwiftSAES" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABCF4BB71EAD05A70028CAA3 /* Debug */,
+				ABCF4BB81EAD05A70028CAA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		CE3C3B8F1BF9E39F005D8F7B /* Build configuration list for PBXProject "swift-s-aes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
